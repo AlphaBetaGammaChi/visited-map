@@ -1,0 +1,42 @@
+[
+ {
+  "id": "rspb",
+  "count": 172,
+  "title": "RSPB Reserves",
+  "singular": "reserve",
+  "color": "#0057b8",
+  "glyph": "🐦",
+  "description": "Royal Society for the Protection of Birds nature reserves",
+  "source": "OpenStreetMap contributors"
+ },
+ {
+  "id": "national-trust",
+  "count": 748,
+  "title": "National Trust",
+  "singular": "property",
+  "color": "#4d7c0f",
+  "glyph": "🌳",
+  "description": "National Trust (and NT for Scotland) places",
+  "source": "OpenStreetMap contributors"
+ },
+ {
+  "id": "embassies",
+  "count": 175,
+  "title": "London Embassies",
+  "singular": "embassy",
+  "color": "#7c3aed",
+  "glyph": "🏛️",
+  "description": "Embassies and high commissions in London",
+  "source": "OpenStreetMap contributors"
+ },
+ {
+  "id": "costa",
+  "count": 2381,
+  "title": "Costa Coffee",
+  "singular": "shop",
+  "color": "#d50e45",
+  "glyph": "☕",
+  "description": "Costa Coffee shops in the UK",
+  "source": "OpenStreetMap contributors"
+ }
+]

@@ -1,0 +1,5 @@
+data/raw/
+data/lad.json
+data/lgd.json
+*.pyc
+.DS_Store
