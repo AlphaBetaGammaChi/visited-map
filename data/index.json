@@ -6,16 +6,18 @@
   "singular": "reserve",
   "color": "#0057b8",
   "glyph": "🐦",
+  "scope": "uk",
   "description": "Royal Society for the Protection of Birds nature reserves",
   "source": "OpenStreetMap contributors"
  },
  {
   "id": "national-trust",
-  "count": 748,
+  "count": 747,
   "title": "National Trust",
   "singular": "property",
   "color": "#4d7c0f",
   "glyph": "🌳",
+  "scope": "uk",
   "description": "National Trust (and NT for Scotland) places",
   "source": "OpenStreetMap contributors"
  },
@@ -26,17 +28,51 @@
   "singular": "embassy",
   "color": "#7c3aed",
   "glyph": "🏛️",
+  "scope": "uk",
+  "bounds": [
+   [
+    51.28,
+    -0.55
+   ],
+   [
+    51.7,
+    0.3
+   ]
+  ],
   "description": "Embassies and high commissions in London",
   "source": "OpenStreetMap contributors"
  },
  {
   "id": "costa",
-  "count": 2381,
+  "count": 2387,
   "title": "Costa Coffee",
   "singular": "shop",
   "color": "#d50e45",
   "glyph": "☕",
+  "scope": "uk",
   "description": "Costa Coffee shops in the UK",
   "source": "OpenStreetMap contributors"
+ },
+ {
+  "id": "starbucks",
+  "count": 1255,
+  "title": "Starbucks",
+  "singular": "shop",
+  "color": "#00704a",
+  "glyph": "☕",
+  "scope": "uk",
+  "description": "Starbucks stores in the UK",
+  "source": "OpenStreetMap contributors"
+ },
+ {
+  "id": "wwt",
+  "count": 10,
+  "title": "WWT Centres",
+  "singular": "centre",
+  "color": "#0284c7",
+  "glyph": "🦆",
+  "scope": "uk",
+  "description": "Wildfowl & Wetlands Trust wetland centres",
+  "source": "curated"
  }
 ]

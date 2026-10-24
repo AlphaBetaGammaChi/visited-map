@@ -1,0 +1,137 @@
+{
+  "collections": [
+    {
+      "id": "rspb",
+      "title": "RSPB Reserves",
+      "singular": "reserve",
+      "color": "#0057b8",
+      "glyph": "🐦",
+      "scope": "uk",
+      "description": "Royal Society for the Protection of Birds nature reserves",
+      "source": {
+        "type": "overpass",
+        "area": "gb",
+        "query": "(nwr[\"operator\"~\"RSPB|Royal Society for the Protection\",i](area.gb);nwr[\"name\"~\"RSPB\",i](area.gb);)"
+      },
+      "require_name_match": "\\bRSPB\\b|Royal Society",
+      "exclude_name": "shop|office|centre|center|café|cafe|car ?park|depot|garage|warehouse|pumping|toilet|headquarters|hide\\b|hides\\b|trail\\b|path\\b|entrance|gateway|platform|viewing|boardwalk|screen\\b|shelter|picnic|loop\\b|bimble|circular|scout|barn\\b|fields\\b|cottage|workshop|garden|memorial|bench",
+      "require": {
+        "any_tags": ["leisure", "boundary", "natural", "landuse", "water", "wetland", "tourism", "geological"],
+        "if_tags": ["shop", "office", "amenity"]
+      },
+      "dedupe_strip": "\\b(rspb|nature reserve|reserve|nnr|national)\\b"
+    },
+    {
+      "id": "national-trust",
+      "title": "National Trust",
+      "singular": "property",
+      "color": "#4d7c0f",
+      "glyph": "🌳",
+      "scope": "uk",
+      "description": "National Trust (and NT for Scotland) places",
+      "source": {
+        "type": "overpass",
+        "area": "gb",
+        "query": "nwr[\"operator\"~\"National Trust\",i](area.gb);"
+      },
+      "exclude_name": "national trust$|^national trust$|\\bwalk\\b|\\bwalks\\b|trail|circular|stroll|ramble|hike|saunter|waymarked|cottage|bothy|bunkhouse|campsite|camp ?site|caravan|holiday let|car ?park|parking|toilet|picnic|kiosk|notice|information board|interpretation|signpost|waymark|bench|seat\\b|memorial bench|visitor centre|visitor center|reception|ticket office|second ?hand book|bookshop|gift shop|plant sale|café|cafe|tea ?room|restaurant|pub\\b|office|workshop|sawmill|yard\\b|depot|store\\b|stores\\b|garage|pump(ing)? station|sluice|weir|pump\\b|boathouse|landing|ferry|jetty|slipway|mooring|^track\\b|\\bgate\\b|entrance|access point|stile|bridge\\b|ford\\b|bird hide|wildlife hide|\\bhide\\b|viewpoint marker|orienteering|geocache|^\\(.*\\)|^\\d{3,4}\\b|^mtb\\b|bike trail|play ?area|playground|den building|dog bin|litter bin|recycling|water tap|shower|laundry|wi-?fi|\\bshop\\b|\\bshed\\b",
+      "exclude_tags": {
+        "route": ".*",
+        "tourism": "information|artwork"
+      },
+      "exclude_tags_soft": {
+        "amenity": "parking|toilets|cafe|restaurant|fast_food|drinking_water|bicycle_rental|bench|waste_basket"
+      },
+      "exclude_soft_unless": ["wikidata"],
+      "drop_tags": {"tags": ["shop", "office", "man_made"], "unless": ["wikidata", "historic"]},
+      "require": {
+        "any_tags": ["wikidata", "historic", "boundary", "leisure", "natural", "landuse", "ruins", "archaeological_site", "place", "military"],
+        "tag_in": {"tourism": ["attraction", "museum", "gallery", "viewpoint", "theme_park", "zoo", "picnic_site", "camp_site"]},
+        "building_needs": ["historic", "tourism", "wikidata"]
+      }
+    },
+    {
+      "id": "embassies",
+      "title": "London Embassies",
+      "singular": "embassy",
+      "color": "#7c3aed",
+      "glyph": "🏛️",
+      "scope": "uk",
+      "bounds": [[51.28, -0.55], [51.7, 0.3]],
+      "description": "Embassies and high commissions in London",
+      "source": {
+        "type": "overpass",
+        "area": "london",
+        "query": "(nwr[\"office\"=\"diplomatic\"](area.lon);nwr[\"amenity\"=\"embassy\"](area.lon);)"
+      },
+      "exclude_name": "visa|consul|commercial|trade|economic|naval|military|defen[cs]e|attach|residence|ambassador'?s|cultural|institut|application cent|honorary|section|office of|bureau",
+      "exclude_tags": {"diplomatic": "consulate"},
+      "flag_tag": "country",
+      "addr": true,
+      "name_fallback_prefix": "Embassy of ",
+      "name_fallback_tag": "country"
+    },
+    {
+      "id": "costa",
+      "title": "Costa Coffee",
+      "singular": "shop",
+      "color": "#d50e45",
+      "glyph": "☕",
+      "scope": "uk",
+      "description": "Costa Coffee shops in the UK",
+      "source": {
+        "type": "overpass",
+        "area": "gb",
+        "query": "nwr[\"name\"~\"Costa\",i][\"amenity\"~\"cafe|fast_food|restaurant\"](area.gb);"
+      },
+      "require_name_match": "costa",
+      "exclude_name": "express|pronto|smart ?cafe",
+      "fixed_name": "Costa Coffee",
+      "region_suffix": true,
+      "dedupe": "city-coord",
+      "addr": true
+    },
+    {
+      "id": "starbucks",
+      "title": "Starbucks",
+      "singular": "shop",
+      "color": "#00704a",
+      "glyph": "☕",
+      "scope": "uk",
+      "description": "Starbucks stores in the UK",
+      "source": {
+        "type": "overpass",
+        "area": "gb",
+        "query": "nwr[\"brand\"~\"Starbucks\",i](area.gb);"
+      },
+      "fixed_name": "Starbucks",
+      "region_suffix": true,
+      "dedupe": "city-coord",
+      "addr": true
+    },
+    {
+      "id": "wwt",
+      "title": "WWT Centres",
+      "singular": "centre",
+      "color": "#0284c7",
+      "glyph": "🦆",
+      "scope": "uk",
+      "description": "Wildfowl & Wetlands Trust wetland centres",
+      "source": {
+        "type": "inline",
+        "sites": [
+          {"name": "WWT Arundel", "lat": 50.8627, "lon": -0.5497},
+          {"name": "WWT Caerlaverock", "lat": 54.9766, "lon": -3.4847},
+          {"name": "WWT Castle Espie", "lat": 54.5311, "lon": -5.6937},
+          {"name": "WWT Llanelli", "lat": 51.6649, "lon": -4.1253},
+          {"name": "WWT London", "lat": 51.4789, "lon": -0.2318},
+          {"name": "WWT Martin Mere", "lat": 53.6184, "lon": -2.8688},
+          {"name": "WWT Slimbridge", "lat": 51.7409, "lon": -2.4017},
+          {"name": "WWT Steart Marshes", "lat": 51.1919, "lon": -3.0709},
+          {"name": "WWT Washington", "lat": 54.8986, "lon": -1.4829},
+          {"name": "WWT Welney", "lat": 52.523, "lon": 0.2832}
+        ]
+      }
+    }
+  ]
+}

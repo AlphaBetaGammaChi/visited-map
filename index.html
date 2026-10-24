@@ -15,6 +15,7 @@
 <header>
   <div class="brand">🗺️ <span>Visited Map</span></div>
   <nav id="collection-tabs"></nav>
+  <button id="add-collection-btn" title="Add a collection">＋</button>
   <button id="profile-btn" title="Profiles"><span id="profile-dot"></span><span id="profile-name">…</span></button>
 </header>
 
@@ -27,6 +28,18 @@
 
     <section id="tab-checklist" class="side-panel active">
       <input id="search" type="search" placeholder="Search sites…" autocomplete="off">
+      <div id="checklist-controls">
+        <select id="filter-status">
+          <option value="all">All</option>
+          <option value="todo">To visit</option>
+          <option value="done">Visited</option>
+        </select>
+        <select id="sort-by">
+          <option value="name">A–Z</option>
+          <option value="region">Region</option>
+          <option value="nearest" disabled>Nearest</option>
+        </select>
+      </div>
       <div id="checklist-progress"></div>
       <ul id="checklist"></ul>
     </section>
@@ -48,9 +61,59 @@
       <button class="mode-btn active" data-mode="pins">📍 Sites</button>
       <button class="mode-btn" data-mode="regions">🗺️ Regions</button>
     </div>
+    <button id="locate-btn" title="Find me">◎</button>
     <div id="region-legend" hidden></div>
   </div>
 </main>
+
+<div id="add-modal" class="modal" hidden>
+  <div class="modal-box">
+    <h2>Add a collection</h2>
+    <div class="modal-row">
+      <input id="ac-title" type="text" placeholder="Title (e.g. Greggs, Wetherspoons…)" maxlength="60">
+    </div>
+    <div class="modal-row">
+      <input id="ac-glyph" type="text" placeholder="Icon emoji" maxlength="4" style="max-width:90px">
+      <input id="ac-color" type="color" value="#0ea5e9" style="max-width:60px">
+      <select id="ac-scope" style="flex:1">
+        <option value="uk">UK — region = council area</option>
+        <option value="world">World — region = country</option>
+      </select>
+    </div>
+    <div class="src-tabs">
+      <button class="src-tab active" data-src="osm">From OpenStreetMap</button>
+      <button class="src-tab" data-src="upload">Upload file</button>
+      <button class="src-tab" data-src="paste">Paste JSON</button>
+    </div>
+    <section class="src-panel active" data-panel="osm">
+      <p class="muted">Pull every place tagged in OpenStreetMap. Examples:
+        key <code>brand</code> value <code>Greggs</code> ·
+        key <code>name</code> value <code>Wetherspoons</code> ·
+        key <code>amenity</code> value <code>biergarten</code></p>
+      <div class="modal-row">
+        <input id="ac-osm-key" type="text" placeholder="tag key (e.g. brand)" style="max-width:130px">
+        <span>=</span>
+        <input id="ac-osm-value" type="text" placeholder="tag value (e.g. Greggs)" style="flex:1">
+      </div>
+      <p class="muted">Value is a regex — <code>Greggs|Costa</code> works.</p>
+    </section>
+    <section class="src-panel" data-panel="upload">
+      <p class="muted">CSV or JSON with <code>name</code>, <code>lat</code>, <code>lon</code>
+        (+ optional <code>addr</code>, <code>region</code>, <code>flag</code>).</p>
+      <input id="ac-file" type="file" accept=".json,.csv">
+    </section>
+    <section class="src-panel" data-panel="paste">
+      <textarea id="ac-json" rows="6" placeholder='[{"name":"Place","lat":51.5,"lon":-0.1}]'></textarea>
+    </section>
+    <div class="modal-row">
+      <button id="ac-create" class="primary">Create collection</button>
+    </div>
+    <div id="ac-status" class="muted"></div>
+    <h3 style="margin-top:14px">Your collections</h3>
+    <ul id="custom-list"></ul>
+    <button class="modal-close" id="add-close">Close</button>
+  </div>
+</div>
 
 <div id="profile-modal" class="modal" hidden>
   <div class="modal-box">
