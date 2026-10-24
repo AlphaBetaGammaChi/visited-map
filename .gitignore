@@ -1,5 +1,6 @@
 data/raw/
 data/lad.json
 data/lgd.json
+data/countries.geo.json
 *.pyc
 .DS_Store
